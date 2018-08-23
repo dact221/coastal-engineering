@@ -14,13 +14,16 @@ def main():
     Tk().withdraw()
     filename = askopenfilename()
 
-    print(f"Opening {filename}")
-    _, t, eta = np.loadtxt(
-        filename,
-        delimiter=",",
-        skiprows=1,
-        unpack=True
-    )
+    try:
+        print(f"Opening {filename}")
+        _, t, eta = np.loadtxt(
+            filename,
+            delimiter=",",
+            skiprows=1,
+            unpack=True
+        )
+    except:
+        raise Exception(f"Couldn't load file!")
 
     w = waves.Wave(t, eta)
     w.zero_crossings(0) # rising zero-crossings
