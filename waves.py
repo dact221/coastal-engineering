@@ -2,9 +2,10 @@ import numpy as np
 
 class Wave:
 
-    def __init__(self, t, eta):
+    def __init__(self, t, eta, verbose=False):
         self.t = t
         self.eta = eta
+        self.verbose = verbose
 
     def mean_lvl_correction(self, m):
         if m == 0:
@@ -64,9 +65,16 @@ class Wave:
             i[1, j] =  np.argmax(self.eta[a:b]) + a
         eta_min, eta_max = self.max_parab(i)
         self.h = eta_max - eta_min # wave heights
+        if self.verbose == True:
+            print("Zero crossings:", iz)
+            print("Roots:", r)
+            print("i minimum:", i[0])
+            print("i maximum:", i[1])
+            print("eta min.:", eta_min)
+            print("eta max.:", eta_max)
 
     def rising_zero_crossings_legacy(self):
-        print("Using legacy version")
+        print("Using legacy version!")
         has_zero = (self.eta[:-1] < 0) & (self.eta[1:] > 0)
         rts = list()
         izero = list()
