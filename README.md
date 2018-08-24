@@ -14,5 +14,5 @@ Now you can run `coastal-engineering`.
 
 ## Dependencies
 
-* Python (>= 3.6.6)
-* NumPy (>= 1.14.5)
+* Python (>= 3.6)
+* NumPy (>= 1.14)
