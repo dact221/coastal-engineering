@@ -1,31 +1,23 @@
 #!/usr/bin/env python3
 
-import sys
+import numpy as np
+from coastal_engineering import wave
 
-sys.path.insert(1, '@pythondir@')
 
-def main():
-
-    import numpy as np
-    from coastal_engineering import waves
+def get_filename():
     from tkinter import Tk
     from tkinter.filedialog import askopenfilename
-
     Tk().withdraw()
     filename = askopenfilename()
+    return filename
 
-    try:
-        print(f"Opening {filename}")
-        _, t, eta = np.loadtxt(
-            filename,
-            delimiter=",",
-            skiprows=1,
-            unpack=True
-        )
-    except:
-        raise Exception(f"Couldn't load file!")
 
-    w = waves.Wave(t, eta)
+def main():
+    filename = get_filename()
+    print(f"Opening {filename}")
+    t, eta = np.loadtxt(filename, unpack=True)
+
+    w = wave.Wave(t, eta)
     w.zero_crossings(0) # rising zero-crossings
 
     print(
@@ -35,6 +27,7 @@ def main():
         f"Sea level variance {np.var(w.eta)}",
         sep="\n"
     )
+
 
 if __name__ == "__main__":
     main()
