@@ -1,17 +1,6 @@
 project('coastal-engineering')
 
-# Importing modules
 python = import('python3')
-
-# Make sure Python is installed and found
-if not python.find_python().found()
-    error('No valid python3 binary found')
-endif
-
-# Check Python version
-if python.language_version().version_compare('<3.6')
-    error('You need Python 3.6')
-endif
 
 PYTHON_DIR = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
 
