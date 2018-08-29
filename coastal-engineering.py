@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-import numpy as np
 from coastal_engineering import wave
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def get_filename():
@@ -18,16 +19,15 @@ def main():
     t, eta = np.loadtxt(filename, unpack=True)
 
     w = wave.Wave(t, eta)
-    w.zero_crossings(0) # rising zero-crossings
-
-    print(
-        f"Periods: {w.p}",
-        f"Wave heights: {w.h}",
-        f"Mean sea level {np.mean(w.eta)}",
-        f"Sea level variance {np.var(w.eta)}",
-        sep="\n"
-    )
+    plt.plot(w.t, w.eta, label="Raw data")
+    for m, ms in {0: "Arithmetic", 1: "Linear", 2: "Parabolic"}.items():
+        plt.plot(w.t, w.eta - w.eta_correction(m), label=f"{ms} correction")
+    plt.xlabel("Time (s)")
+    plt.xlabel("Water level (m)")
+    plt.legend()
+    plt.show()
 
 
 if __name__ == "__main__":
     main()
+
