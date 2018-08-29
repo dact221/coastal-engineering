@@ -42,8 +42,8 @@ class Wave:
         y = list()
         for j in range(r + 1):
             s = 0
-            for k, i in enumerate(range(1, self.n + 1)):
-                s += self.eta[k] * i ** j
+            for i in range(1, self.n + 1):
+                s += self.eta[i - 1] * i ** j
             y.append(s)
         return y
 
@@ -138,7 +138,7 @@ class Wave:
         return c - b**2 / 4 / a
 
 
-    def zero_crossings(self, method):
+    def zero_crossings(self, method=0):
         """Computes/sets spatial periods and wave heights using rising or
         falling zero-crossings method.
 
