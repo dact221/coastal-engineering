@@ -155,9 +155,9 @@ class Wave:
         self.p = r[1:] - r[:-1] # periods
 
         iext = np.empty((2, len(self.p)), dtype=int)
-        for i, (a, b) in enumerate(zip(iz[:-1] + 1, iz[1:])):
-            iext[0][i] = np.argmin(self.eta[a:b]) + a
-            iext[1][i] =  np.argmax(self.eta[a:b]) + a
+        for i, (a, b) in enumerate(np.column_stack((iz[:-1], iz[1:])) + 1):
+            iext[0, i] = np.argmin(self.eta[a:b]) + a
+            iext[1, i] =  np.argmax(self.eta[a:b]) + a
         eta_min, eta_max = self._max_parab(iext)
 
         self.h = eta_max - eta_min # wave heights

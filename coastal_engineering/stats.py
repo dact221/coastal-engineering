@@ -15,13 +15,13 @@ def mean2(a):
 
 def mean3(a):
     n = len(a)
-    return (3 * sum(a[:n//3]) + h[n//3]) / n
+    return (3 * sum(a[:n//3]) + a[n//3]) / n
 
 def mean10(a):
     n = len(a)
-    return (10 * sum(a[:n//10]) + 4 * h[n//10]) / n
+    return (10 * sum(a[:n//10]) + 4 * a[n//10]) / n
 
 def mean100(a):
     n = len(a)
-    return (100 * sum(a[:n//100]) + 54 * h[n//100]) / n
+    return (100 * sum(a[:n//100]) + 54 * a[n//100]) / n
 

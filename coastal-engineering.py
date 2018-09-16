@@ -1,8 +1,21 @@
 #!/usr/bin/env python3
 
-from coastal_engineering import wave
+from coastal_engineering import wave, stats
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+REPORT = (
+    "** {0} **\n"
+    "Mean: {1:0.4f}\n"
+    "Root mean square: {2:0.4f}\n"
+    "Skewness: {3:0.4f}\n"
+    "Mean of the highest half: {4:0.4f}\n"
+    "Mean of the highest third: {5:0.4f}\n"
+    "Mean of the highest tenth: {6:0.4f}\n"
+    "Mean of the highest hundredth: {7:0.4f}\n"
+    "Maximum: {8:0.4f}"
+)
 
 
 def get_filename():
@@ -35,6 +48,22 @@ def main():
     plt.hist(w.h, bins="doane")
     plt.show()
 
+    it = {
+        "Wave height": np.flipud(np.sort(w.h)),
+        "Period": np.flipud(np.sort(w.p))
+    }
+    for s, arr in it.items():
+        print(REPORT.format(
+            s,
+            np.mean(arr),
+            stats.rms(arr),
+            stats.skw(arr),
+            stats.mean2(arr),
+            stats.mean3(arr),
+            stats.mean10(arr),
+            stats.mean100(arr),
+            np.max(arr)
+        ))
 
 if __name__ == "__main__":
     main()
