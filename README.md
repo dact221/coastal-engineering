@@ -1,16 +1,14 @@
 # Coastal Engineering
 
-Python scripts for Coastal Engineering design.
+Python program for Coastal Engineering computations.
 
-You need Meson to build.
+## Usage
 
-```
-meson build
-cd build
-ninja install
+```bash
+python3 coastal-engineering.py
 ```
 
-Now you can run `coastal-engineering`.
+You can test the program using a dataset from `examples/`.
 
 ## Dependencies
 
