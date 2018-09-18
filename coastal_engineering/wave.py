@@ -68,7 +68,7 @@ class Wave:
         return b0 + b1*ns + b2*ns**2
 
 
-    def eta_correction(self, method):
+    def eta_corr(self, method):
         """Computes tidal correction for water level data.
 
         Args:

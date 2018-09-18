@@ -1,7 +1,5 @@
 from numpy import mean, sqrt, sum
-
-def ms(a):
-    return mean(a**2)
+# TODO: Make these computations more efficient
 
 def rms(a):
     return sqrt(mean(a**2))
